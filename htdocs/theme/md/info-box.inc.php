@@ -40,14 +40,20 @@ if (GETPOSTISSET('THEME_SATURATE_RATIO')) {
 
 ?>
 
+.back {
+	padding: 2px;
+	margin: 2px;
+	border-radius: 3px;
+}
 .nature label {
 	background: #EEE;
 	color: #000;
 	padding: 5px 10px;
-	border-radius: 3px;
 	cursor: pointer;
+	border-radius: 3px;
 }
-.nature input[type="checkbox"] {
+.nature input[type="checkbox"],
+.nature input[type="radio"] {
 	display: none;
 }
 
@@ -63,28 +69,18 @@ if (GETPOSTISSET('THEME_SATURATE_RATIO')) {
 .nature input#supplier-input:checked + label {
 	background: #599caf;
 }
-.user-back {
+.nature input#physical-input:checked + label,
+.nature input#moral-input:checked + label,
+.physical,
+.moral {
+	background: #599caf;
+	white-space: nowrap;
+	color: #fff;
+}
+
+.user {
 	background-color: #79633f;
 	color: #FFF;
-	padding: 2px;
-	margin: 2px;
-	border-radius: 3px;
-}
-.member-company-back {
-	padding: 2px;
-	margin: 2px;
-	background-color: #e4e4e4;
-	color: #666;
-	border-radius: 3px;
-	white-space: nowrap;
-}
-.member-individual-back {
-	padding: 2px;
-	margin: 2px;
-	background-color: #e4e4e4;
-	color: #666;
-	border-radius: 3px;
-	white-space: nowrap;
 }
 
 .bg-infobox-project{

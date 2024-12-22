@@ -1493,7 +1493,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 			if (!getDolGlobalString('SOCIETE_DISABLE_PROSPECTS')) {
 				?>
-				<span class="nature paddinglarge marginrightonly">
+				<span class="back nature paddinglarge marginrightonly">
 					<input type="checkbox" id="prospect-input" name="prospect" value="2" <?= $selectedProspect ? 'checked="checked"' : '' ?>>
 					<label for="prospect-input"><?= $langs->trans("Prospect") ?></label>
 				</span>
@@ -1502,7 +1502,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 			if (!getDolGlobalString('SOCIETE_DISABLE_CUSTOMERS')) {
 				?>
-				<span class="nature paddinglarge marginrightonly">
+				<span class="back nature paddinglarge marginrightonly">
 					<input type="checkbox" id="customer-input" name="customer" value="1" <?= $selectedCustomer ? 'checked="checked"' : '' ?>>
 					<label for="customer-input"><?= $langs->trans("Customer") ?></label>
 				</span>
@@ -1514,7 +1514,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 				// Supplier
 				$selected = (GETPOSTISSET('supplier') ? GETPOSTINT('supplier') : $object->fournisseur);
 				?>
-				<span class="nature paddinglarge marginrightonly">
+				<span class="back nature paddinglarge marginrightonly">
 						<input type="checkbox" id="supplier-input" name="supplier" value="1" <?= $selected ? 'checked="checked"' : '' ?>>
 						<label for="supplier-input"><?= $langs->trans("Vendor") ?></label>
 					</span>
@@ -2306,7 +2306,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 				if (!getDolGlobalString('SOCIETE_DISABLE_PROSPECTS')) {
 					?>
-					<span class="nature paddinglarge marginrightonly">
+					<span class="back nature paddinglarge marginrightonly">
 						<input type="checkbox" id="prospect-input" name="prospect" value="2" <?= $selectedProspect ? 'checked="checked"' : '' ?>>
 						<label for="prospect-input"><?= $langs->trans("Prospect") ?></label>
 					</span>
@@ -2315,7 +2315,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 				if (!getDolGlobalString('SOCIETE_DISABLE_CUSTOMERS')) {
 					?>
-					<span class="nature paddinglarge marginrightonly">
+					<span class="back nature paddinglarge marginrightonly">
 						<input type="checkbox" id="customer-input" name="customer" value="1" <?= $selectedCustomer ? 'checked="checked"' : '' ?>>
 						<label for="customer-input"><?= $langs->trans("Customer") ?></label>
 					</span>
@@ -2326,7 +2326,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 					// Supplier
 					$selected = (GETPOSTISSET('supplier') ? GETPOSTINT('supplier') : $object->fournisseur);
 					?>
-					<span class="nature paddinglarge marginrightonly">
+					<span class="back nature paddinglarge marginrightonly">
 						<input type="checkbox" id="supplier-input" name="supplier" value="1" <?= $selected ? 'checked="checked"' : '' ?>>
 						<label for="supplier-input"><?= $langs->trans("Vendor") ?></label>
 					</span>
