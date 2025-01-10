@@ -587,7 +587,7 @@ class Adherent extends CommonObject
 						$labeltoshow = dol_strtoupper(dolGetFirstLetters($labeltoshowp, 2));
 					}
 				}
-				$s .= '<span class="member-individual-back paddingleftimp paddingrightimp" title="'.$langs->trans("Physical").'">'.$labeltoshow.'</span>';
+				$s .= '<span class="back physical paddingleftimp paddingrightimp" title="'.$langs->trans("Physical").'">'.$labeltoshow.'</span>';
 			}
 			if ($morphy == 'mor') {
 				$labeltoshow = $labeltoshowm;
@@ -597,7 +597,7 @@ class Adherent extends CommonObject
 						$labeltoshow = dol_strtoupper(dolGetFirstLetters($labeltoshowm, 2));
 					}
 				}
-				$s .= '<span class="member-company-back paddingleftimp paddingrightimp" title="'.$langs->trans("Moral").'">'.$labeltoshow.'</span>';
+				$s .= '<span class="back moral paddingleftimp paddingrightimp" title="'.$langs->trans("Moral").'">'.$labeltoshow.'</span>';
 			}
 		} else {
 			if ($morphy == 'phy') {

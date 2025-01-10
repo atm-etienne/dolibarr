@@ -1466,25 +1466,25 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 			// Prospect/Customer/Supplier
 			$selected = $object->client;
-			$selectedcustomer = 0;
-			$selectedprospect = 0;
+			$selectedCustomer = 0;
+			$selectedProspect = 0;
 			switch ($selected) {
 				case 1:
-					$selectedcustomer = 1;
+					$selectedCustomer = 1;
 					break;
 				case 2:
-					$selectedprospect = 1;
+					$selectedProspect = 1;
 					break;
 				case 3:
-					$selectedprospect = 1;
-					$selectedcustomer = 1;
+					$selectedProspect = 1;
+					$selectedCustomer = 1;
 					break;
 				default:
 					break;
 			}
 
-			$selectedprospect = (GETPOSTISSET('prospect') ? GETPOSTINT('prospect') : $selectedprospect);
-			$selectedcustomer = (GETPOSTISSET('customer') ? GETPOSTINT('customer') : $selectedcustomer);
+			$selectedProspect = (GETPOSTISSET('prospect') ? GETPOSTINT('prospect') : $selectedProspect);
+			$selectedCustomer = (GETPOSTISSET('customer') ? GETPOSTINT('customer') : $selectedCustomer);
 			print '<tr class="marginbottomlarge height50">';
 			if ($conf->browser->layout != 'phone') {
 				print '<td class="titlefieldcreate">'.$form->editfieldkey('', 'customerprospect', '', $object, 0, 'string', '', 0).'</td>';
@@ -1492,60 +1492,33 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 			print '<td class="maxwidthonsmartphone"'.($conf->browser->layout != 'phone' ? 'colspan="3"' : 'colspan="2"').'>';
 
 			if (!getDolGlobalString('SOCIETE_DISABLE_PROSPECTS')) {
-				print '<span id="spannature1" class="spannature prospect-back paddinglarge marginrightonly"><label for="prospectinput" class="valignmiddle">'.$langs->trans("Prospect").'<input id="prospectinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="prospect" value="2"'.($selectedprospect ? ' checked="checked"' : '').'></label></span>';
+				?>
+				<span class="back nature paddinglarge marginrightonly">
+					<input type="checkbox" id="prospect-input" name="prospect" value="2" <?= $selectedProspect ? 'checked="checked"' : '' ?>>
+					<label for="prospect-input"><?= $langs->trans("Prospect") ?></label>
+				</span>
+				<?php
 			}
 
 			if (!getDolGlobalString('SOCIETE_DISABLE_CUSTOMERS')) {
-				print '<span id="spannature2" class="spannature customer-back paddinglarge marginrightonly"><label for="customerinput" class="valignmiddle">'.$langs->trans("Customer").'<input id="customerinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="customer" value="1"'.($selectedcustomer ? ' checked="checked"' : '').'></label></span>';
+				?>
+				<span class="back nature paddinglarge marginrightonly">
+					<input type="checkbox" id="customer-input" name="customer" value="1" <?= $selectedCustomer ? 'checked="checked"' : '' ?>>
+					<label for="customer-input"><?= $langs->trans("Customer") ?></label>
+				</span>
+				<?php
 			}
 
 			if ((isModEnabled("fournisseur") && $user->hasRight('fournisseur', 'lire') && !getDolGlobalString('MAIN_USE_NEW_SUPPLIERMOD')) || (isModEnabled("supplier_order") && $user->hasRight('supplier_order', 'lire')) || (isModEnabled("supplier_invoice") && $user->hasRight('supplier_invoice', 'lire'))
 				|| (isModEnabled('supplier_proposal') && $user->hasRight('supplier_proposal', 'lire'))) {
 				// Supplier
 				$selected = (GETPOSTISSET('supplier') ? GETPOSTINT('supplier') : $object->fournisseur);
-				print '<span id="spannature3" class="spannature vendor-back paddinglarge marginrightonly"><label for="supplierinput" class="valignmiddle">'.$langs->trans("Vendor").'<input id="supplierinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="supplier" value="1"'.($selected ? ' checked="checked"' : '').'></label></span>';
-			}
-			// Add js to manage the background of nature
-			if ($conf->use_javascript_ajax) {
-				print '<script>
-				function refreshNatureCss() {
-					jQuery(".spannature").each(function( index ) {
-						id = $(this).attr("id").split("spannature")[1];
-						console.log(jQuery("#spannature"+(id)+" .checkforselect").is(":checked"));
-						if (jQuery("#spannature"+(id)+" .checkforselect").is(":checked")) {
-							if (id == 1) {
-								jQuery("#spannature"+(id)).addClass("prospect-back").removeClass("nonature-back");
-							}
-							if (id == 2) {
-								jQuery("#spannature"+(id)).addClass("customer-back").removeClass("nonature-back");
-							}
-							if (id == 3) {
-								jQuery("#spannature"+(id)).addClass("vendor-back").removeClass("nonature-back");
-							}
-						} else {
-							jQuery("#spannature"+(id)).removeClass("prospect-back").removeClass("customer-back").removeClass("vendor-back").addClass("nonature-back");
-						}
-					});
-				}
-
-				function manageprospectcustomer(element) {
-					console.log("We uncheck unwanted values on a nature");
-					id = $(element).attr("id").split("spannature")[1];
-					if ( id == 1){
-						$("#spannature2 .checkforselect").prop("checked", false);
-					}
-					if ( id == 2){
-						$("#spannature1 .checkforselect").prop("checked", false);
-					}
-				}
-
-				jQuery(".spannature").click(function(){
-					console.log("We click on a nature");
-					'.(getDolGlobalString('SOCIETE_DISABLE_PROSPECTSCUSTOMERS') ? 'manageprospectcustomer($(this));' : '').'
-					refreshNatureCss();
-				});
-				refreshNatureCss();
-				</script>';
+				?>
+				<span class="back nature paddinglarge marginrightonly">
+						<input type="checkbox" id="supplier-input" name="supplier" value="1" <?= $selected ? 'checked="checked"' : '' ?>>
+						<label for="supplier-input"><?= $langs->trans("Vendor") ?></label>
+					</span>
+				<?php
 			}
 			print '</td>';
 			print '</tr>';
@@ -2308,85 +2281,58 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($canvasdisplayactio
 
 				// Prospect/Customer/Supplier
 				$selected = $object->client;
-				$selectedcustomer = 0;
-				$selectedprospect = 0;
+				$selectedCustomer = 0;
+				$selectedProspect = 0;
 				switch ($selected) {
 					case 1:
-						$selectedcustomer = 1;
+						$selectedCustomer = 1;
 						break;
 					case 2:
-						$selectedprospect = 1;
+						$selectedProspect = 1;
 						break;
 					case 3:
-						$selectedprospect = 1;
-						$selectedcustomer = 1;
+						$selectedProspect = 1;
+						$selectedCustomer = 1;
 						break;
 					default:
 						break;
 				}
 
 				// Nature of thirdparty
-				$selectedprospect = (GETPOSTISSET('prospect') ? GETPOSTINT('prospect') : $selectedprospect);
-				$selectedcustomer = (GETPOSTISSET('customer') ? GETPOSTINT('customer') : $selectedcustomer);
+				$selectedProspect = (GETPOSTISSET('prospect') ? GETPOSTINT('prospect') : $selectedProspect);
+				$selectedCustomer = (GETPOSTISSET('customer') ? GETPOSTINT('customer') : $selectedCustomer);
 				print '<tr class="marginbottomlarge height50"><td class="titlefieldcreate">'.$form->editfieldkey('', 'customerprospect', '', $object, 0, 'string', '', 0).'</td>';
 				print '<td class="maxwidthonsmartphone" colspan="3">';
 
 				if (!getDolGlobalString('SOCIETE_DISABLE_PROSPECTS')) {
-					print '<span id="spannature1" class="spannature prospect-back paddinglarge marginrightonly"><label for="prospectinput" class="valignmiddle">'.$langs->trans("Prospect").'<input id="prospectinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="prospect" value="2"'.($selectedprospect ? ' checked="checked"' : '').'></label></span>';
+					?>
+					<span class="back nature paddinglarge marginrightonly">
+						<input type="checkbox" id="prospect-input" name="prospect" value="2" <?= $selectedProspect ? 'checked="checked"' : '' ?>>
+						<label for="prospect-input"><?= $langs->trans("Prospect") ?></label>
+					</span>
+					<?php
 				}
 
 				if (!getDolGlobalString('SOCIETE_DISABLE_CUSTOMERS')) {
-					print '<span id="spannature2" class="spannature customer-back paddinglarge marginrightonly"><label for="customerinput" class="valignmiddle">'.$langs->trans("Customer").'<input id="customerinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="customer" value="1"'.($selectedcustomer ? ' checked="checked"' : '').'></label></span>';
+					?>
+					<span class="back nature paddinglarge marginrightonly">
+						<input type="checkbox" id="customer-input" name="customer" value="1" <?= $selectedCustomer ? 'checked="checked"' : '' ?>>
+						<label for="customer-input"><?= $langs->trans("Customer") ?></label>
+					</span>
+					<?php
 				}
 				if ((isModEnabled("fournisseur") && $user->hasRight('fournisseur', 'lire') && !getDolGlobalString('MAIN_USE_NEW_SUPPLIERMOD')) || (isModEnabled("supplier_order") && $user->hasRight('supplier_order', 'lire')) || (isModEnabled("supplier_invoice") && $user->hasRight('supplier_invoice', 'lire'))
 					|| (isModEnabled('supplier_proposal') && $user->hasRight('supplier_proposal', 'lire'))) {
 					// Supplier
 					$selected = (GETPOSTISSET('supplier') ? GETPOSTINT('supplier') : $object->fournisseur);
-					print '<span id="spannature3" class="spannature vendor-back paddinglarge marginrightonly"><label for="supplierinput" class="valignmiddle">'.$langs->trans("Vendor").'<input id="supplierinput" class="flat checkforselect marginleftonly valignmiddle" type="checkbox" name="supplier" value="1"'.($selected ? ' checked="checked"' : '').'></label></span>';
+					?>
+					<span class="back nature paddinglarge marginrightonly">
+						<input type="checkbox" id="supplier-input" name="supplier" value="1" <?= $selected ? 'checked="checked"' : '' ?>>
+						<label for="supplier-input"><?= $langs->trans("Vendor") ?></label>
+					</span>
+					<?php
 				}
 
-				// Add js to manage the background of nature
-				if ($conf->use_javascript_ajax) {
-					print '<script>
-						function refreshNatureCss() {
-							jQuery(".spannature").each(function( index ) {
-								id = $(this).attr("id").split("spannature")[1];
-								console.log(jQuery("#spannature"+(id)+" .checkforselect").is(":checked"));
-								if (jQuery("#spannature"+(id)+" .checkforselect").is(":checked")) {
-									if (id == 1) {
-										jQuery("#spannature"+(id)).addClass("prospect-back").removeClass("nonature-back");
-									}
-									if (id == 2) {
-										jQuery("#spannature"+(id)).addClass("customer-back").removeClass("nonature-back");
-									}
-									if (id == 3) {
-										jQuery("#spannature"+(id)).addClass("vendor-back").removeClass("nonature-back");
-									}
-								} else {
-									jQuery("#spannature"+(id)).removeClass("prospect-back").removeClass("customer-back").removeClass("vendor-back").addClass("nonature-back");
-								}
-							})
-						}
-
-						function manageprospectcustomer(element) {
-							console.log("We uncheck unwanted values on a nature");
-							id = $(element).attr("id").split("spannature")[1];
-							if ( id == 1){
-								$("#spannature2 .checkforselect").prop("checked", false);
-							}
-							if ( id == 2){
-								$("#spannature1 .checkforselect").prop("checked", false);
-							}
-						}
-
-						jQuery(".spannature").click(function(){
-							console.log("We click on a nature");
-							'.(getDolGlobalString('SOCIETE_DISABLE_PROSPECTSCUSTOMERS') ? 'manageprospectcustomer($(this));' : '').'
-							refreshNatureCss();
-						});
-						refreshNatureCss();
-						</script>';
-				}
 				print '</td>';
 				print '</tr>';
 				print '<tr><td>'.$form->editfieldkey('CustomerCode', 'customer_code', '', $object, 0).'</td><td>';

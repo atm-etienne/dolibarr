@@ -346,55 +346,47 @@ if (GETPOSTISSET('THEME_SATURATE_RATIO')) {
 	<?php } ?>
 }
 
-.nonature-back {
-	background-color: #EEE;
+.back {
 	padding: 2px;
 	margin: 2px;
 	border-radius: 3px;
 }
-.prospect-back {
-	background-color: #a7c5b0 !important;
-	color: #FFF !important;
-	padding: 2px;
-	margin: 2px;
+.nature label {
+	background: #EEE;
+	color: #000;
+	padding: 5px 10px;
+	cursor: pointer;
 	border-radius: 3px;
 }
-.customer-back {
-	background-color: #55955d !important;
-	color: #FFF !important;
-	padding: 2px;
-	margin: 2px;
-	border-radius: 3px;
+.nature input[type="checkbox"],
+.nature input[type="radio"] {
+	display: none;
 }
-.vendor-back {
-	background-color: #599caf !important;
-	color: #FFF !important;
-	padding: 2px;
-	margin: 2px;
-	border-radius: 3px;
+
+.nature input:checked + label {
+	color: #fff;
 }
-.user-back {
-	background-color: #79633f !important;
-	color: #FFF !important;
-	padding: 2px;
-	margin: 2px;
-	border-radius: 3px;
+.nature input#prospect-input:checked + label {
+	background: #a7c5b0;
 }
-.member-company-back {
-	padding: 2px;
-	margin: 2px;
-	background-color: #e4e4e4;
-	color: #666;
-	border-radius: 3px;
+.nature input#customer-input:checked + label {
+	background: #65953d;
+}
+.nature input#supplier-input:checked + label {
+	background: #599caf;
+}
+.nature input#physical-input:checked + label,
+.nature input#moral-input:checked + label,
+.physical,
+.moral {
+	background: #599caf;
 	white-space: nowrap;
+	color: #fff;
 }
-.member-individual-back {
-	padding: 2px;
-	margin: 2px;
-	background-color: #e4e4e4;
-	color: #666;
-	border-radius: 3px;
-	white-space: nowrap;
+
+.user {
+	background-color: #79633f;
+	color: #FFF;
 }
 
 
