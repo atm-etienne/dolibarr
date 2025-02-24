@@ -31,7 +31,11 @@
 define('CSRFCHECK_WITH_TOKEN', 1); // We force need to use a token to login when making a POST
 
 require 'main.inc.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.formother.class.php';
+require_once __DIR__.'/core/class/Autoloader.php';
+
+use Dolibarr\HTML\FormOther;
+use Dolibarr\InfoBox;
+use Dolibarr\HTML\Form;
 
 /**
  * @var Conf $conf
@@ -71,7 +75,6 @@ if ($nbmodulesnotautoenabled <= getDolGlobalInt('MAIN_MIN_NB_ENABLED_MODULE_FOR_
 	exit;
 }
 if (GETPOST('addbox')) {	// Add box (when submit is done from a form when ajax disabled)
-	require_once DOL_DOCUMENT_ROOT.'/core/class/infobox.class.php';
 	$zone = GETPOSTINT('areacode');
 	$userid = GETPOSTINT('userid');
 	$boxorder = GETPOST('boxorder', 'aZ09');
