@@ -26,8 +26,7 @@
  *      \brief      Class file for html component project
  */
 
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
-
+namespace Dolibarr\HTML;
 /**
  *      Class to manage building of HTML components
  */

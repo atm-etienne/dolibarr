@@ -47,7 +47,7 @@
  * \brief      File of class with all html predefined components
  */
 
-
+namespace Dolibarr\HTML;
 /**
  * Class to manage generation of HTML components
  * Only common components must be here.

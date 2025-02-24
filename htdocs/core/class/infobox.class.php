@@ -24,6 +24,7 @@
  *	\brief      File of class to manage widget boxes
  */
 
+namespace Dolibarr;
 /**
  *	Class to manage boxes on pages. This is an utility class (all is static)
  */

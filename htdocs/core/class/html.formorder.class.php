@@ -23,9 +23,7 @@
  *	\brief      File of predefined functions for HTML forms for order module
  */
 
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
-require_once DOL_DOCUMENT_ROOT.'/commande/class/commande.class.php';
-
+namespace Dolibarr\HTML;
 /**
  *	Class to manage HTML output components for orders
  *	Before adding component here, check they are not into common part Form.class.php

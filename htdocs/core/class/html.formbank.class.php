@@ -23,9 +23,7 @@
  *	\brief      File of class with all html predefined components
  */
 
-include_once DOL_DOCUMENT_ROOT.'/compta/bank/class/account.class.php';
-
-
+namespace Dolibarr\HTML;
 /**
  *	Class to manage generation of HTML components for bank module
  */

@@ -26,6 +26,7 @@
  */
 
 
+namespace Dolibarr\HTML;
 /**
  *      Class to generate html code for admin pages
  */

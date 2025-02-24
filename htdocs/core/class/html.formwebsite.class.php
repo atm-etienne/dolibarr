@@ -22,7 +22,7 @@
  *	\brief      File of class to manage component html for module website
  */
 
-
+namespace Dolibarr\HTML;
 /**
  *	Class to manage component html for module website
  */

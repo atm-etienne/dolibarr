@@ -27,13 +27,11 @@
  *	\brief      File of class to build HTML component for third parties management
  */
 
-
+namespace Dolibarr\HTML;
 /**
  *	Class to build HTML component for third parties management
  *	Only common components are here.
  */
-
-require_once DOL_DOCUMENT_ROOT . '/core/class/html.form.class.php';
 
 
 /**

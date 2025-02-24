@@ -33,7 +33,9 @@
  *	\brief      Fichier de la class des functions predefinie de composants html autre
  */
 
+namespace Dolibarr\HTML;
 
+use Dolibarr\InfoBox;
 /**
  *	Class permettant la generation de composants html autre
  *	Only common components are here.
@@ -459,7 +461,6 @@ class FormOther
 
 		// Enhance with select2
 		if ($conf->use_javascript_ajax) {
-			include_once DOL_DOCUMENT_ROOT.'/core/lib/ajax.lib.php';
 			$comboenhancement = ajax_combobox('select_categ_'.$htmlname);
 			$moreforfilter .= $comboenhancement;
 		}
@@ -1225,7 +1226,6 @@ class FormOther
 	{
 		global $conf, $langs, $db;
 
-		include_once DOL_DOCUMENT_ROOT.'/core/class/infobox.class.php';
 		// From include
 		'
 		@phan-var-force ModeleBoxes[] $boxactivated
