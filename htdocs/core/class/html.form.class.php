@@ -48,6 +48,9 @@
  */
 
 namespace Dolibarr\HTML;
+
+use stdClass;
+use Dolibarr\ModeleBoxes;
 /**
  * Class to manage generation of HTML components
  * Only common components must be here.

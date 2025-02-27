@@ -24,7 +24,7 @@
  *	\ingroup    core
  *	\brief      File of class to manage hooks
  */
-
+namespace Dolibarr;
 
 /**
  *	Class to manage hooks

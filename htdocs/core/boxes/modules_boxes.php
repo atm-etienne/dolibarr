@@ -25,7 +25,7 @@
  *		\ingroup    core
  *		\brief      File containing the parent class of boxes
  */
-
+namespace Dolibarr;
 
 /**
  * Class ModeleBoxes

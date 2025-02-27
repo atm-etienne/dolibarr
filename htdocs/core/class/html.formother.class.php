@@ -35,7 +35,7 @@
 
 namespace Dolibarr\HTML;
 
-use Dolibarr\InfoBox;
+use Dolibarr\{InfoBox, ModeleBoxes};
 /**
  *	Class permettant la generation de composants html autre
  *	Only common components are here.

@@ -27,12 +27,12 @@
  *  \ingroup    societe
  *  \brief      Home page for third parties area
  */
+namespace Dolibarr;
 
+use Dolibarr\HTML\FormOther;
+use Dolibarr\HookManager;
 // Load Dolibarr environment
 require '../main.inc.php';
-require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
-require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.formother.class.php';
 
 /**
  * @var Conf $conf

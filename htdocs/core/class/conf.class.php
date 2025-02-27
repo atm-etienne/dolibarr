@@ -28,6 +28,7 @@
  *  \brief      	File of class to manage storage of current setup
  *  				Config is stored into file conf.php
  */
+namespace Dolibarr;
 
 /**
  *  Class to stock current configuration
