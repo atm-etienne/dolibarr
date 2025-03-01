@@ -19,9 +19,10 @@ class Autoloader {
 
 		$baseDirectories = [
 			realpath(__DIR__) . DIRECTORY_SEPARATOR,
-			realpath(__DIR__ . '/../../custom/') . DIRECTORY_SEPARATOR,
+			realpath(__DIR__ . '/../../custom') . DIRECTORY_SEPARATOR,
 		];
 
+		// We need to check all the possible class file names, until they all follow the correct syntax
 		$filePatterns = [
 			strtolower(basename($relativeClassPath)) . '.class.php',
 			strtolower(dirname($relativeClassPath)) . '.' . strtolower(basename($relativeClassPath)) . '.class.php',
