@@ -20,6 +20,7 @@
  * @ingroup       core
  * @brief         trait for handling deprecated properties and methods
  */
+namespace Dolibarr;
 
 /**
  * Class for handling deprecated properties and methods

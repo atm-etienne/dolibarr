@@ -21,7 +21,7 @@
  *       \ingroup    core
  *       \brief      File of the superclass of object classes that support people
  */
-
+namespace Dolibarr;
 
 /**
  *      Support class for third parties, contacts, members, users or resources

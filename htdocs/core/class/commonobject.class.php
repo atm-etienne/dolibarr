@@ -39,8 +39,9 @@
  *	\ingroup    core
  *	\brief      File of parent class of all other business classes (invoices, contracts, proposals, orders, ...)
  */
+namespace Dolibarr;
 
-require_once DOL_DOCUMENT_ROOT.'/core/class/doldeprecationhandler.class.php';
+//require_once DOL_DOCUMENT_ROOT.'/core/class/doldeprecationhandler.class.php';
 
 /**
  *	Parent class of all other business classes (invoices, contracts, proposals, orders, ...)

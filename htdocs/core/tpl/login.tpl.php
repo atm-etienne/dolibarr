@@ -23,6 +23,8 @@
 // Caller can also set 	$morelogincontent = array(['options']=>array('js'=>..., 'table'=>...);
 // $titletruedolibarrversion must be defined
 
+require_once __DIR__ . "/../lib/functions.lib.php";
+
 if (!defined('NOBROWSERNOTIF')) {
 	define('NOBROWSERNOTIF', 1);
 }

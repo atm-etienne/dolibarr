@@ -38,6 +38,8 @@
  *	\ingroup	core
  *	\brief      File that defines environment for Dolibarr GUI pages only (file not required by scripts)
  */
+require_once __DIR__ . "/core/class/Autoloader.php";
+require_once __DIR__ . "/core/lib/functions.lib.php";
 
 //@ini_set('memory_limit', '128M');	// This may be useless if memory is hard limited by your PHP
 

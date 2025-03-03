@@ -425,7 +425,7 @@ function getDoliDBInstance($type, $host, $user, $pass, $name, $port)
 {
 	require_once DOL_DOCUMENT_ROOT."/core/db/".$type.'.class.php';
 
-	$class = 'DoliDB'.ucfirst($type);
+	$class = 'Dolibarr\\DB\\DoliDB'.ucfirst($type);
 	$db = new $class($type, $host, $user, $pass, $name, $port);
 	return $db;
 }
@@ -452,7 +452,6 @@ function getEntity($element, $shared = 1, $currentobject = null)
 	global $conf, $mc, $hookmanager, $object, $action, $db;
 
 	if (!is_object($hookmanager)) {
-		include_once DOL_DOCUMENT_ROOT.'/core/class/hookmanager.class.php';
 		$hookmanager = new HookManager($db);
 	}
 
@@ -2898,7 +2897,6 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 		$out .= '">'."\n";
 	}
 	if (!empty($dragdropfile)) {
-		include_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 		$out .= dragAndDropFileUpload("dragDropAreaTabBar");
 	}
 	$parameters = array('tabname' => $active, 'out' => $out);
@@ -3122,7 +3120,6 @@ function dol_banner_tab($object, $paramid, $morehtml = '', $shownav = 1, $fieldi
 						// Conversion du PDF en image png si fichier png non existent
 						if (!file_exists($fileimage) || (filemtime($fileimage) < filemtime($filepdf))) {
 							if (!getDolGlobalString('MAIN_DISABLE_PDF_THUMBS')) {		// If you experience trouble with pdf thumb generation and imagick, you can disable here.
-								include_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 								$ret = dol_convert_file($filepdf, 'png', $fileimage, '0'); // Convert first page of PDF into a file _preview.png
 								if ($ret < 0) {
 									$error++;
@@ -3870,7 +3867,6 @@ function dol_now($mode = 'auto')
 	if ($mode == 'gmt') {
 		$ret = time(); // Time for now at greenwich.
 	} elseif ($mode == 'tzserver') {		// Time for now with PHP server timezone added
-		require_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
 		$tzsecond = getServerTimeZoneInt('now'); // Contains tz+dayling saving time
 		$ret = (int) (dol_now('gmt') + ($tzsecond * 3600));
 		//} elseif ($mode == 'tzref') {// Time for now with parent company timezone is added
@@ -4080,7 +4076,6 @@ function getArrayOfSocialNetworks()
 
 	$socialnetworks = array();
 	// Enable caching of array
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/memory.lib.php';
 	$cachekey = 'socialnetworks_' . $conf->entity;
 	$dataretrieved = dol_getcache($cachekey);
 	if (!is_null($dataretrieved)) {
@@ -4703,7 +4698,6 @@ function dolGetCountryCodeFromIp($ip)
 		$datafile = getDolGlobalString('GEOIPMAXMIND_COUNTRY_DATAFILE');
 		//$ip='24.24.24.24';
 		//$datafile='/usr/share/GeoIP/GeoIP.dat';    Note that this must be downloaded datafile (not same than datafile provided with ubuntu packages)
-		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
 		//print 'ip='.$ip.' databaseType='.$geoip->gi->databaseType." GEOIP_CITY_EDITION_REV1=".GEOIP_CITY_EDITION_REV1."\n";
 		$countrycode = $geoip->getCountryCodeFromIP($ip);
@@ -4730,7 +4724,6 @@ function dol_user_country()
 		$datafile = getDolGlobalString('GEOIPMAXMIND_COUNTRY_DATAFILE');
 		//$ip='24.24.24.24';
 		//$datafile='E:\Mes Sites\Web\Admin1\awstats\maxmind\GeoIP.dat';
-		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
 		$countrycode = $geoip->getCountryCodeFromIP($ip);
 		$ret = $countrycode;
@@ -5995,8 +5988,6 @@ function img_credit_card($brand, $morecss = null)
  */
 function img_mime($file, $titlealt = '', $morecss = '')
 {
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
-
 	$mimetype = dol_mimetype($file, '', 1);
 	$mimeimg = dol_mimetype($file, '', 2);
 	$mimefa = dol_mimetype($file, '', 4);
@@ -6128,7 +6119,6 @@ function dol_print_error($db = null, $error = '', $errors = null)
 
 	// If error occurs before the $lang object was loaded
 	if (!$langs) {
-		require_once DOL_DOCUMENT_ROOT.'/core/class/translate.class.php';
 		$langs = new Translate('', $conf);
 		$langs->load("main");
 	}
@@ -7139,8 +7129,6 @@ function price2num($amount, $rounding = '', $option = 0)
  */
 function showDimensionInBestUnit($dimension, $unit, $type, $outputlangs, $round = -1, $forceunitoutput = 'no', $use_short_label = 0)
 {
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/product.lib.php';
-
 	if (($forceunitoutput == 'no' && $dimension < 1 / 10000 && $unit < 90) || (is_numeric($forceunitoutput) && $forceunitoutput == -6)) {
 		$dimension *= 1000000;
 		$unit -= 6;
@@ -7524,8 +7512,6 @@ function get_product_vat_for_country($idprod, $thirdpartytouse, $idprodfournpric
 {
 	global $db, $mysoc;
 
-	require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
-
 	$ret = 0;
 	$found = 0;
 
@@ -7619,10 +7605,6 @@ function get_product_localtax_for_country($idprod, $local, $thirdpartytouse)
 {
 	global $db, $mysoc;
 
-	if (!class_exists('Product')) {
-		require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
-	}
-
 	$ret = 0;
 	$found = 0;
 
@@ -7692,8 +7674,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 {
 	global $conf, $db;
 
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
-
 	// Note: possible values for tva_assuj are 0/1 or franchise/reel
 	$seller_use_vat = ((is_numeric($thirdparty_seller->tva_assuj) && !$thirdparty_seller->tva_assuj) || (!is_numeric($thirdparty_seller->tva_assuj) && $thirdparty_seller->tva_assuj == 'franchise')) ? 0 : 1;
 
@@ -7711,7 +7691,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 		if ($seller_in_cee && $buyer_in_cee) {
 			$isacompany = $thirdparty_buyer->isACompany();
 			if ($isacompany && getDolGlobalString('MAIN_USE_VAT_COMPANIES_IN_EEC_WITH_INVALID_VAT_ID_ARE_INDIVIDUAL')) {
-				require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 				if (!isValidVATID($thirdparty_buyer)) {
 					$isacompany = 0;
 				}
@@ -7780,7 +7759,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 	if (($seller_in_cee && $buyer_in_cee)) {
 		$isacompany = $thirdparty_buyer->isACompany();
 		if ($isacompany && getDolGlobalString('MAIN_USE_VAT_COMPANIES_IN_EEC_WITH_INVALID_VAT_ID_ARE_INDIVIDUAL')) {
-			require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 			if (!isValidVATID($thirdparty_buyer)) {
 				$isacompany = 0;
 			}
@@ -7827,16 +7805,10 @@ function get_default_npr(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 	global $db;
 
 	if ($idprodfournprice > 0) {
-		if (!class_exists('ProductFournisseur')) {
-			require_once DOL_DOCUMENT_ROOT.'/fourn/class/fournisseur.product.class.php';
-		}
 		$prodprice = new ProductFournisseur($db);
 		$prodprice->fetch_product_fournisseur_price($idprodfournprice);
 		return $prodprice->fourn_tva_npr;
 	} elseif ($idprod > 0) {
-		if (!class_exists('Product')) {
-			require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
-		}
 		$prod = new Product($db);
 		$prod->fetch($idprod);
 		return $prod->tva_npr;
@@ -9489,7 +9461,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				$paymenturl = '';
 			} else {
 				// Set the online payment url link into __ONLINE_PAYMENT_URL__ key
-				require_once DOL_DOCUMENT_ROOT.'/core/lib/payments.lib.php';
 				$outputlangs->loadLangs(array('paypal', 'other'));
 
 				$amounttouse = 0;
@@ -9523,7 +9494,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 
 				// Show structured communication
 				if (getDolGlobalString('INVOICE_PAYMENT_ENABLE_STRUCTURED_COMMUNICATION') && $object->element == 'facture') {
-					include_once DOL_DOCUMENT_ROOT.'/core/lib/functions_be.lib.php';
 					$substitutionarray['__PAYMENT_STRUCTURED_COMMUNICATION__'] = dolBECalculateStructuredCommunication($object->ref, $object->type);
 				}
 
@@ -9561,7 +9531,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				if (is_object($object) && $object->element == 'propal') {
 					'@phan-var-force Propal $object';
 					$substitutionarray['__URL_PROPOSAL__'] = DOL_MAIN_URL_ROOT."/comm/propal/card.php?id=".$object->id;
-					require_once DOL_DOCUMENT_ROOT.'/core/lib/signature.lib.php';
 					$substitutionarray['__ONLINE_SIGN_URL__'] = getOnlineSignatureUrl(0, 'proposal', $object->ref, 1, $object);
 				}
 				if (is_object($object) && $object->element == 'commande') {
@@ -9575,13 +9544,11 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				if (is_object($object) && $object->element == 'contrat') {
 					'@phan-var-force Contrat $object';
 					$substitutionarray['__URL_CONTRACT__'] = DOL_MAIN_URL_ROOT."/contrat/card.php?id=".$object->id;
-					require_once DOL_DOCUMENT_ROOT.'/core/lib/signature.lib.php';
 					$substitutionarray['__ONLINE_SIGN_URL__'] = getOnlineSignatureUrl(0, 'contract', $object->ref, 1, $object);
 				}
 				if (is_object($object) && $object->element == 'fichinter') {
 					'@phan-var-force Fichinter $object';
 					$substitutionarray['__URL_FICHINTER__'] = DOL_MAIN_URL_ROOT."/fichinter/card.php?id=".$object->id;
-					require_once DOL_DOCUMENT_ROOT.'/core/lib/signature.lib.php';
 					$substitutionarray['__ONLINE_SIGN_FICHINTER_URL__'] = getOnlineSignatureUrl(0, 'fichinter', $object->ref, 1, $object);
 				}
 				if (is_object($object) && $object->element == 'supplier_proposal') {
@@ -9609,7 +9576,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 	}
 	if ((empty($exclude) || !in_array('objectamount', $exclude)) && (empty($include) || in_array('objectamount', $include))) {
 		'@phan-var-force Facture|FactureRec $object';
-		include_once DOL_DOCUMENT_ROOT.'/core/lib/functionsnumtoword.lib.php';
 
 		$substitutionarray['__DATE_YMD__']          = is_object($object) ? (isset($object->date) ? dol_print_date($object->date, 'day', false, $outputlangs) : null) : '';
 		$substitutionarray['__DATE_DUE_YMD__']      = is_object($object) ? (isset($object->date_lim_reglement) ? dol_print_date($object->date_lim_reglement, 'day', false, $outputlangs) : null) : '';
@@ -9683,8 +9649,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 
 
 	if ((empty($exclude) || !in_array('date', $exclude)) && (empty($include) || in_array('date', $include))) {
-		include_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
-
 		$now = dol_now();
 
 		$tmp = dol_getdate($now, true);
@@ -9939,8 +9903,6 @@ function make_substitutions($text, $substitutionarray, $outputlangs = null, $con
 function complete_substitutions_array(&$substitutionarray, $outputlangs, $object = null, $parameters = null, $callfunc = "completesubstitutionarray")
 {
 	global $conf, $user;
-
-	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
 	// Note: substitution key for each extrafields, using key __EXTRA_XXX__ is already available into the getCommonSubstitutionArray used to build the substitution array.
 
@@ -13738,7 +13700,6 @@ function getElementProperties($elementType)
 
 	// Add  hook
 	if (!is_object($hookmanager)) {
-		include_once DOL_DOCUMENT_ROOT.'/core/class/hookmanager.class.php';
 		$hookmanager = new HookManager($db);
 	}
 	$hookmanager->initHooks(array('elementproperties'));
@@ -14559,8 +14520,6 @@ function show_actions_messaging($conf, $langs, $db, $filterobj, $objcon = null, 
 
 	global $param, $massactionbutton;
 
-	require_once DOL_DOCUMENT_ROOT . '/comm/action/class/actioncomm.class.php';
-
 	// Check parameters
 	if (!is_object($filterobj) && !is_object($objcon)) {
 		dol_print_error(null, 'BadParameter');
@@ -14876,11 +14835,6 @@ function show_actions_messaging($conf, $langs, $db, $filterobj, $objcon = null, 
 	if (isModEnabled('agenda') || (isModEnabled('mailing') && !empty($objcon->email))) {
 		$delay_warning = getDolGlobalInt('MAIN_DELAY_ACTIONS_TODO') * 24 * 60 * 60;
 
-		require_once DOL_DOCUMENT_ROOT.'/comm/action/class/actioncomm.class.php';
-		include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-		require_once DOL_DOCUMENT_ROOT.'/core/class/html.formactions.class.php';
-		require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
-
 		$formactions = new FormActions($db);
 
 		$actionstatic = new ActionComm($db);
@@ -14977,7 +14931,6 @@ function show_actions_messaging($conf, $langs, $db, $filterobj, $objcon = null, 
 			$out .= getTitleFieldOfList($tmp);
 		}
 
-		require_once DOL_DOCUMENT_ROOT.'/comm/action/class/cactioncomm.class.php';
 		$caction = new CActionComm($db);
 		$arraylist = $caction->liste_array(1, 'code', '', (!getDolGlobalString('AGENDA_USE_EVENT_TYPE') ? 1 : 0), '', 1);
 
@@ -15360,7 +15313,6 @@ function recordNotFound($message = '', $printheader = 1, $printfooter = 1, $show
 	global $action, $object;
 
 	if (!is_object($langs)) {
-		include_once DOL_DOCUMENT_ROOT.'/core/class/translate.class.php';
 		$langs = new Translate('', $conf);
 		$langs->setDefaultLang();
 	}
@@ -15386,7 +15338,6 @@ function recordNotFound($message = '', $printheader = 1, $printfooter = 1, $show
 
 	if (empty($showonlymessage)) {
 		if (empty($hookmanager)) {
-			include_once DOL_DOCUMENT_ROOT.'/core/class/hookmanager.class.php';
 			$hookmanager = new HookManager($db);
 			// Initialize a technical object to manage hooks of page. Note that conf->hooks_modules contains an array of hook context
 			$hookmanager->initHooks(array('main'));

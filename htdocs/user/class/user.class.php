@@ -36,12 +36,10 @@
  *	\brief      File of class to manage users
  *  \ingroup	core
  */
+namespace Dolibarr\User;
 
-require_once DOL_DOCUMENT_ROOT.'/core/lib/security.lib.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-require_once DOL_DOCUMENT_ROOT.'/user/class/usergroup.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonpeople.class.php';
-
+use Dolibarr\{CommonObject, CommonPeople, DefaultValues};
+use stdClass;
 
 /**
  *	Class to manage Dolibarr users
@@ -820,7 +818,6 @@ class User extends CommonObject
 
 		if (getDolGlobalString('MAIN_ENABLE_DEFAULT_VALUES')) {
 			// Load user->default_values for user. TODO Save this in memcached ?
-			require_once DOL_DOCUMENT_ROOT.'/core/class/defaultvalues.class.php';
 
 			$defaultValues = new DefaultValues($this->db);
 			$result = $defaultValues->fetchAll('', '', 0, 0, '(t.user_id:in:0,'.$this->id.') AND (entity:in:'.(isset($this->entity) ? $this->entity : $conf->entity).','.$conf->entity.')');	// User 0 (all) + me (if defined)

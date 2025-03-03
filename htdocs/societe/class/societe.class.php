@@ -42,13 +42,10 @@
  *	\ingroup    societe
  *	\brief      File for third party class
  */
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonincoterm.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonsocialnetworks.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonpeople.class.php';
-require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
-require_once DOL_DOCUMENT_ROOT.'/multicurrency/class/multicurrency.class.php';
+namespace Dolibarr\ThirdParty;
 
+use Dolibarr\{CommonObject, CommonPeople, CommonIncoterm, CommonSocialNetworks, Conf};
+use Dolibarr\MultiCurrency\MultiCurrency;
 
 /**
  *	Class to manage third parties objects (customers, suppliers, prospects...)

@@ -30,6 +30,8 @@
  */
 namespace Dolibarr;
 
+use stdClass;
+
 /**
  *  Class to stock current configuration
  */

@@ -30,8 +30,8 @@
 
 define('CSRFCHECK_WITH_TOKEN', 1); // We force need to use a token to login when making a POST
 
-require 'main.inc.php';
 require_once __DIR__.'/core/class/Autoloader.php';
+require 'main.inc.php';
 
 use Dolibarr\HTML\FormOther;
 use Dolibarr\InfoBox;

@@ -34,7 +34,7 @@
  *	\ingroup    core
  *	\brief      File of class to manage extra fields
  */
-
+namespace Dolibarr;
 
 /**
  *	Class to manage standard extra fields

@@ -24,7 +24,7 @@
  *      \ingroup    core
  *		\brief      File for Translate class
  */
-
+namespace Dolibarr;
 
 /**
  *		Class to manage translations
