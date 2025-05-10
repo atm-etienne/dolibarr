@@ -21,7 +21,7 @@
  *       \ingroup    core
  *       \brief      File of the superclass of object classes that support socialnetworks
  */
-
+namespace Dolibarr;
 
 /**
  *      Superclass for social networks

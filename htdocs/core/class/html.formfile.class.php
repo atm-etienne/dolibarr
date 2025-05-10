@@ -31,7 +31,7 @@
  *	\brief      File of class to offer components to list and upload files
  */
 
-
+namespace Dolibarr\HTML;
 /**
  *	Class to offer components to list and upload files
  */

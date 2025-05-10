@@ -23,8 +23,7 @@
  *	\brief      File for class with methods for building product related HTML components
  */
 
-require_once DOL_DOCUMENT_ROOT.'/product/stock/class/entrepot.class.php';
-
+namespace Dolibarr\HTML;
 /**
  *	Class with static methods for building HTML components related to products
  *	Only components common to products and services must be here.

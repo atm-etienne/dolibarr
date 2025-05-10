@@ -28,14 +28,8 @@
  *    \brief      File of class to generate the form for creating a new ticket.
  */
 
-require_once DOL_DOCUMENT_ROOT . '/core/class/html.form.class.php';
-require_once DOL_DOCUMENT_ROOT . '/core/class/html.formmail.class.php';
-require_once DOL_DOCUMENT_ROOT . '/core/class/html.formprojet.class.php';
 
-if (!class_exists('FormCompany')) {
-	include DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
-}
-
+namespace Dolibarr\HTML;
 /**
  * Class to generate the form for creating a new ticket.
  * Usage: 	$formticket = new FormTicket($db)

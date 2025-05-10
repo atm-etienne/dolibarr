@@ -23,7 +23,7 @@
  *  \ingroup    core
  *  \brief      File of the superclass of classes of lines of business objects (invoice, contract, proposal, orders, etc. ...)
  */
-
+namespace Dolibarr;
 
 /**
  *  Parent class for class inheritance lines of business objects

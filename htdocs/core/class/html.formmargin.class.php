@@ -23,7 +23,7 @@
  *	\brief      Fichier de la class des functions predefinie de composants html autre
  */
 
-
+namespace Dolibarr\HTML;
 /**
  *	Class permettant la generation de composants html autre
  *	Only common components are here.

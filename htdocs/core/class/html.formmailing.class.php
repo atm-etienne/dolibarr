@@ -21,8 +21,8 @@
  *  \ingroup    core
  *	\brief      File of predefined functions for HTML forms for mailing module
  */
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
 
+namespace Dolibarr\HTML;
 /**
  *  Class to offer components to list and upload files
  */

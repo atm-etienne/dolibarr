@@ -26,6 +26,7 @@
  */
 
 
+namespace Dolibarr\HTML;
 /**
  *      Class to manage building of HTML components
  */

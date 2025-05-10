@@ -23,10 +23,7 @@
  *	\brief		File of class to build HTML component for category filtering
  */
 
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
-require_once DOL_DOCUMENT_ROOT.'/categories/class/categorie.class.php';
-
-
+namespace Dolibarr\HTML;
 /**
  *	Class to manage forms for categories
  */

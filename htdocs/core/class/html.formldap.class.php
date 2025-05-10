@@ -21,8 +21,8 @@
  *       \ingroup    core
  *       \brief      File of class with ldap html predefined components
  */
-require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
 
+namespace Dolibarr\HTML;
 /**
  *      Class to manage generation of HTML components for ldap module
  */

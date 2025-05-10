@@ -23,9 +23,9 @@
  *  \ingroup    core
  *  \brief      Module to show box of last user logins
  */
+namespace Dolibarr;
 
-include_once DOL_DOCUMENT_ROOT.'/core/boxes/modules_boxes.php';
-
+use Dolibarr\ModeleBoxes;
 /**
  *  Class to manage the box of last login
  */

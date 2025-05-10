@@ -26,9 +26,7 @@
  * \ingroup multicurrency
  * \brief   This file is a CRUD class file (Create/Read/Update/Delete) for multicurrency
  */
-
-require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-require_once DOL_DOCUMENT_ROOT.'/multicurrency/class/currencyrate.class.php';
+namespace Dolibarr\MultiCurrency;
 
 /**
  * Class Currency

@@ -24,7 +24,7 @@
  *      \brief      Fichier de la class des functions predefinie de composants html
  */
 
-
+namespace Dolibarr\HTML;
 /**
  *      Class to manage barcode HTML
  */
